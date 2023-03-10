@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import lombok.Getter;
+import lombok.Setter;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Component;
 
@@ -16,9 +17,10 @@ public class Canvas {
     private final String EMPTY_CELL = " ";
     @Getter
     private final String[][] board;
+    @Setter
     @Getter
     private String currentPlayer;
-    private SimpMessagingTemplate template;
+    protected SimpMessagingTemplate template;
 
     public Canvas() {
         board = new String[BOARD_SIZE][BOARD_SIZE];
@@ -31,7 +33,7 @@ public class Canvas {
                 board[i][j] = EMPTY_CELL;
             }
         }
-        currentPlayer = PLAYER_X;
+        currentPlayer = null;
     }
 
     public boolean makeMove(int row, int col, String player) {
